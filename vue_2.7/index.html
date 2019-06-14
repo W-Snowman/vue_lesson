@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+        <title>vue_2.x</title>
+        <script src="./vue.js"></script>
+    </head>
+    <body>
+        <div id="app">
+            <input type="text" v-model="todo">
+            <button @click="submit">提交</button>
+            <ul>
+                <todo-item  :content="item"
+                            :index="index" 
+                            v-for="(item,index) in list"
+                            @click="clickItem">
+                </todo-item>
+            </ul>
+        </div>
+
+        <script>
+
+            //局部注册组件(子组件)
+            var TodoItem = {
+                props: ['content','index'],
+                template: '<li @click="deleteItem">{{content}}</li>',
+                methods:{
+                    deleteItem: function(){
+                        this.$emit('click',this.index);
+                    }
+                }
+            };
+
+            var app = new Vue({
+                el: '#app',
+                //局部注册组件
+                components: {
+                    TodoItem: TodoItem
+                },
+                data: {
+                    list: [],
+                    todo: ''
+                },
+                methods: {
+                    submit: function() {
+                        this.list.push(this.todo);
+                        this.todo = '';
+                    },
+                    clickItem: function(data){
+                        this.list.splice(data,1);
+                    }
+                }
+            })
+        </script>
+        
+    </body>
+</html>
