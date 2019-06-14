@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+        <title>vue_2.x</title>
+        <script src="./vue.js"></script>
+    </head>
+    <body>
+        <div id="app">
+            <input type="text" v-model="todo">
+            <button @click="submit">提交</button>
+            <ul>
+                <li v-for="item in list">{{item}}</li>
+            </ul>
+        </div>
+
+        <script>
+            var app = new Vue({
+                el: '#app',
+                data: {
+                    list: [],
+                    todo: ''
+                },
+                methods: {
+                    submit: function() {
+                        this.list.push(this.todo);
+                        this.todo = '';
+                    }
+                }
+            })
+        </script>
+        
+    </body>
+</html>
