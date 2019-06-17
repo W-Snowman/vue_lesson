@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+        <title>vue_2.x</title>
+        <script src="./vue.js"></script>
+    </head>
+    <body>
+        <div id="app">
+            <div>{{fullName}}</div>
+            <div>{{age}}</div>
+        </div>
+
+        <script>
+
+            var vm = new Vue({
+                el: '#app',
+                data: {
+                    firstName: 'Hello',
+                    lastName: 'World',
+                    age: 27
+                },
+                //使用计算属性的getter和setter
+                computed: {
+                    fullName: {
+                        get: function() {
+                            return this.firstName + ' ' + this.lastName;
+                        },
+                        set: function(value) {
+                            var arr = value.split(" ");
+                            this.firstName = arr[0];
+                            this.lastName = arr[1];
+                        }
+                    }
+                }
+            })
+        </script>
+        
+    </body>
+</html>
