@@ -1,0 +1,31 @@
+<!-- v-if与v-show 条件渲染 -->
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+        <title>vue_3.x</title>
+        <script src="./vue.js"></script>
+    </head>
+    <body>
+        <div id="app">
+            <!-- <div v-show='show' data-set='v-show'>{{message}}</div> -->
+            <div v-if='show === "a"'>
+                用户名：<input type="text" key="username">
+            </div>
+            <div v-else>
+                密码：<input type="text" key="password">
+            </div>
+        </div>
+
+        <script>
+            var vm = new Vue({
+                el: '#app',
+                data: {
+                    show: 'a',
+                    message: "Hello World"
+                }
+            })
+        </script>
+        
+    </body>
+</html>
