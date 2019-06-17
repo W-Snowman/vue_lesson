@@ -1,0 +1,33 @@
+<!-- 使用style属性绑定样式 -->
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+        <title>vue_3.x</title>
+        <script src="./vue.js"></script>
+    </head>
+    <body>
+        <div id="app">
+            <div    @click="handleDivClick"
+                    :style="[clickStyle]"
+            >Hello World</div>
+        </div>
+
+        <script>
+            var vm = new Vue({
+                el: '#app',
+                data: {
+                    clickStyle: {
+                        color: 'red'
+                    }
+                },
+                methods: {
+                    handleDivClick: function() {
+                        this.clickStyle.color = this.clickStyle.color === "red" ? "black" : "red"
+                    }
+                }
+            })
+        </script>
+        
+    </body>
+</html>
