@@ -1,0 +1,46 @@
+<!-- 数组或对象的列表渲染 -->
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+        <title>vue_4.x</title>
+        <script src="./vue.js"></script>
+    </head>
+    <body>
+        <div id="app">
+            <count ref="one" @change="numberAdd"></count>
+            <count ref="two" @change="numberAdd"></count>
+            <div>{{ total }}</div>
+        </div>
+
+        <script>
+            Vue.component('count',{
+                data: function(){
+                    return{
+                        number: 0
+                    }
+                },
+                template: '<div @click="handleClickDiv">{{ number }}</div>',
+                methods: {
+                    handleClickDiv: function() {
+                        this.number++;
+                        this.$emit('change');
+                    }
+                }
+            })
+
+            var vm = new Vue({
+                el: '#app',
+                data: {
+                    total: 0
+                },
+                methods: {
+                    numberAdd: function() {
+                        this.total = this.$refs.one.number + this.$refs.two.number;
+                    }
+                }
+            })
+        </script>
+        
+    </body>
+</html>
