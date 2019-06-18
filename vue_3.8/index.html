@@ -1,0 +1,30 @@
+<!-- 数组或对象的列表渲染 -->
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+        <title>vue_3.x</title>
+        <script src="./vue.js"></script>
+    </head>
+    <body>
+        <div id="app">
+            <div v-for='(item, index) of list'>
+                {{item}} 
+            </div>
+        </div>
+
+        <script>
+            var vm = new Vue({
+                el: '#app',
+                data: {
+                    list: [
+                        'a',
+                        'b',
+                        'c'
+                    ]
+                }
+            })
+        </script>
+        
+    </body>
+</html>
