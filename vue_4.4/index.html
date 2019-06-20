@@ -1,0 +1,32 @@
+<!-- 数组或对象的列表渲染 -->
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+        <title>vue_4.x</title>
+        <script src="./vue.js"></script>
+    </head>
+    <body>
+        <div id="app">
+            <item @click.native="handleClick"></item>
+        </div>
+
+        <script>
+            Vue.component('item',{
+                template: '<div>我是一个文字按钮</div>'
+            });
+
+
+            var vm = new Vue({
+                el: '#app',
+                methods: {
+                    handleClick: function() {
+                        alert('click');
+                    }
+                }
+            })
+        </script>
+        
+    </body>
+</html>
+
