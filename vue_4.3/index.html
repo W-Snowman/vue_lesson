@@ -1,0 +1,50 @@
+<!-- 数组或对象的列表渲染 -->
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+        <title>vue_4.x</title>
+        <script src="./vue.js"></script>
+    </head>
+    <body>
+        <div id="app">
+            <item content="hello"></item>
+            <child data-set="world"></child>
+        </div>
+
+        <script>
+            Vue.component('item',{
+                props: {
+                    content: {
+                        type: String,                   //基本类型
+                        required: true,                 //是否必须
+                        default: 'this is default',     //未设置的默认值
+                        validator: function(value) {    //自定义验证方法
+                            return(value.length > 4);
+                        }
+                    }
+                },
+                template: '<div>{{ content }}</div>'
+            });
+
+
+            var child = {
+                props: {
+                    dataSet: {
+                        type: String
+                    }
+                },
+                template: '<div>{{ dataSet }}</div>'
+            };
+
+            var vm = new Vue({
+                el: '#app',
+                components: {
+                    child
+                }
+            })
+        </script>
+        
+    </body>
+</html>
+
