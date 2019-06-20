@@ -1,0 +1,51 @@
+<!-- 数组或对象的列表渲染 -->
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+        <title>vue_4.x</title>
+        <script src="./vue.js"></script>
+    </head>
+    <body>
+        <div id="app">
+            <count :num="1" @inc="increse(1)"></count>
+            <count :num="2" @inc="increse(1)"></count>
+            <div>{{ total }}</div>
+        </div>
+
+        <script>
+            var count = {
+                props: ['num'],
+                template: '<div @click="handleClick">{{ insteadNum }}</div>',
+                data: function() {
+                    return {
+                        insteadNum: this.num
+                    }
+                },
+                methods: {
+                    handleClick: function() {
+                        this.insteadNum++;
+                        this.$emit('inc',1);
+                    }
+                }
+            };
+
+            var vm = new Vue({
+                el: '#app',
+                components: {
+                    count: count
+                },
+                data: {
+                    total: 3
+                },
+                methods: {
+                    increse: function(item) {
+                        this.total += item;
+                    }
+                }
+            })
+        </script>
+        
+    </body>
+</html>
+
