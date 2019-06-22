@@ -1,0 +1,51 @@
+<!-- 数组或对象的列表渲染 -->
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <title>vue_4.x</title>
+    <script src="./vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <base-layout>
+            <template v-slot:header>
+                <h1>Here might be a page title</h1>
+            </template>
+
+            <template v-slot:default>
+                <p>A paragraph for the main content.</p>
+                <p>And another one.</p>
+            </template>
+
+            <template v-slot:footer>
+                <p>Here's some contact info</p>
+            </template>
+        </base-layout>
+    </div>
+
+    <script>
+        Vue.component('baseLayout', {
+            template: `<div class="container">
+                            <header>
+                                <slot name="header"></slot>
+                            </header>
+                            <main>
+                                <slot></slot>
+                            </main>
+                            <footer>
+                                <slot name="footer"></slot>
+                            </footer>
+                        </div>`
+        });
+
+        var vm = new Vue({
+            el: '#app'
+        })
+    </script>
+
+</body>
+
+</html>
