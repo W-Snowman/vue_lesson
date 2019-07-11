@@ -1,0 +1,37 @@
+<!-- 数组或对象的列表渲染 -->
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <title>vue_4.x作用域插槽</title>
+    <script src="./vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <child>
+            <template slot-scope="slotProps">
+                <li>{{slotProps.item}}</li>
+            </template>
+        </child>
+    </div>
+
+    <script>
+        Vue.component('child',{
+            data: function() {
+                return {
+                    list: [1, 2, 3, 4]
+                }
+            },
+            template:   `<div><ul><slot v-for="item of list" :item=item></slot></ul></div>`
+        })
+
+        var vm = new Vue({
+            el: '#app'
+        })
+    </script>
+
+</body>
+
+</html>
