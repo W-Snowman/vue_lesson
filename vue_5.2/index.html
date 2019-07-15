@@ -6,46 +6,33 @@
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
     <title>vue_5.x vue过渡与css动画</title>
     <script src="./vue.js"></script>
-    <style>
-        .fade-enter,
-        .fade-leave-to {
-            opacity: 0;
-        }
-
-        .fade-enter-active,
-        .fade-leave-active {
-            transition: opacity 1s;
-        }
-
-
-    </style>
+    <link rel="stylesheet" type="text/css" href="./animate.css">
+    <!-- <link href="https://cdn.jsdelivr.net/npm/animate.css@3.5.1" rel="stylesheet" type="text/css"> -->
+    
 </head>
 
 <body>
     <div id="app">
-        <transition name="fade" mode="out-in">
-            <component :is="type"></component>
+        <transition name = "fade" enter-active-class="animated hinge" leave-active-class="animated rotateOut">
+            <!-- <child-one v-if="show"></child-one> -->
+            <p v-if="show">hhhhhhhhh</p>
         </transition>
         <button @click="handleClick">点我</button>
     </div>
 
     <script>
         Vue.component('child-one',{
-            template: '<div v-once>child-one</div>'
+            template: '<div>child-one</div>'
         });
-
-        Vue.component('child-two',{
-            template: '<div v-once>child-two</div>'
-        })
 
         var vm = new Vue({
             el: '#app',
             data: {
-                type: 'child-one'
+                show: true
             },
             methods: {
                 handleClick: function() {
-                    this.type = this.type === 'child-one' ? 'child-two' : 'child-one';
+                    this.show = !this.show;
                 }
             }
         })
