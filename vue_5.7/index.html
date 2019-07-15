@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <title>vue_5.x vue过渡与css动画</title>
+    <script src="./vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <fade :show="show">
+            <div>Hello World</div>
+        </fade>
+
+        <fade :show="hide">
+            <h1>Bye World</h1>
+        </fade>
+        <button @click="handleShowClick">show</button>
+        <button @click="handleHideClick">hide</button>
+    </div>
+    <script>
+        Vue.component('fade',{
+            props: ['show'],
+            template:   `<transition @before-enter="handleBeforeEnter" @enter="handleEnter">
+                            <slot v-if="show"></slot>
+                        </transition>`,
+            methods: {
+                handleBeforeEnter: function(el) {
+                    el.style.color = 'red';
+                },
+                handleEnter: function(el,done) {
+                    setTimeout(function(){
+                        el.style.color = 'green';
+                        done();
+                    }, 2000)
+                }
+            }
+        });
+
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                show: true,
+                hide: false
+            },
+            methods: {
+                handleShowClick: function() {
+                    this.show = !this.show;
+                },
+                handleHideClick: function() {
+                    this.hide = !this.hide;
+                },
+            }
+        })
+    </script>
+
+</body>
+
+</html>
