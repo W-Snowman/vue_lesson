@@ -1,0 +1,57 @@
+<!-- 数组或对象的列表渲染 -->
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <title>vue_5.x vue过渡与css动画</title>
+    <script src="./vue.js"></script>
+    <link rel="stylesheet" type="text/css" href="./animate.css">
+    <!-- <link href="https://cdn.jsdelivr.net/npm/animate.css@3.5.1" rel="stylesheet" type="text/css"> -->
+    <style>
+        .fade-enter, .fade-leave-to {
+            opacity: 0;
+        }
+
+        .fade-enter-active, .fade-leave-active {
+            transition: opacity 3s;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <transition 
+            :duration="{enter: 2000, leave: 2000}"
+            appear
+            name = "fade" 
+            enter-active-class="animated swing fade-enter-active" 
+            leave-active-class="animated shake fade-leave-active"
+            appear-active-class="animated swing fade-enter-active"
+        >
+            <child-one v-if="show"></child-one>
+        </transition>
+        <button @click="handleClick">点我</button>
+    </div>
+
+    <script>
+        Vue.component('child-one',{
+            template: '<div>child-one</div>'
+        });
+
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                show: true
+            },
+            methods: {
+                handleClick: function() {
+                    this.show = !this.show;
+                }
+            }
+        })
+    </script>
+
+</body>
+
+</html>
